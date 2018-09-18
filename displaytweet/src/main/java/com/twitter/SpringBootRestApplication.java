@@ -27,7 +27,7 @@ public class SpringBootRestApplication {
         SpringApplication.run(SpringBootRestApplication.class, args);
     }
 
-    ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+    private ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
     @Autowired
     @Qualifier("filterTwitterClient")
     private TwitterClient client;

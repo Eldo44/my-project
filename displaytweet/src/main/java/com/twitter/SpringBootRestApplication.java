@@ -40,7 +40,7 @@ public class SpringBootRestApplication {
             } catch (TwitterAuthenticationException | IOException e) {
                 e.printStackTrace();
             }
-        }, 0, 1, TimeUnit.HOURS);
+        }, 20, 3600, TimeUnit.SECONDS);
     }
 
     @PreDestroy

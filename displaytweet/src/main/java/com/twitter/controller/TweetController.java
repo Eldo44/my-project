@@ -4,6 +4,7 @@ import com.twitter.dto.TweetContentDTO;
 import com.twitter.model.Tweet;
 import com.twitter.oauth.TwitterClient;
 import com.twitter.repository.TweetRepository;
+import com.twitter.service.TweetService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -25,11 +26,11 @@ public class TweetController {
 
     @Autowired
     @Qualifier("filterTwitterClient")
-    TwitterClient client;
+    private TwitterClient client;
     @Autowired
-    TweetRepository repository;
+    private TweetService tweetService;
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @ApiOperation(value = "Displays last 10 tweets tracked on a keyword", response = Iterable.class)
     @ApiResponses(value = {
@@ -41,7 +42,7 @@ public class TweetController {
     )
     @RequestMapping(value = "/tweets", method = RequestMethod.GET, produces = "application/json")
     public List<TweetContentDTO> getTweets() {
-        List<Tweet> tweets = repository.findFirst10ByOrderByCreationDateDesc();
+        List<Tweet> tweets = tweetService.retrieveLast10Tweets();
         return tweets.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 

@@ -64,9 +64,7 @@ public class TweetProcessorImpl implements TweetProcessor {
 
         }
         LOGGER.info("Number of Input Tweets: " + tweetCount);
-        System.out.println("DTO--- > " + tweetDTOS);
         List<Tweet> tweets = tweetDTOS.stream().map(this::convertToEntity).collect(Collectors.toList());
-        System.out.println("entities--- > " + tweets);
         tweetRepository.saveAll(tweets);
         return tweetDTOS;
 

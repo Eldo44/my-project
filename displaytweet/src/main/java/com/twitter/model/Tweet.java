@@ -3,6 +3,7 @@ package com.twitter.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Message")
@@ -39,6 +40,19 @@ public class Tweet implements Serializable {
 
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tweet)) return false;
+        Tweet tweet = (Tweet) o;
+        return Objects.equals(id, tweet.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public void setCreationDate(Date creationDate) {

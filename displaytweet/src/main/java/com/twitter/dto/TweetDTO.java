@@ -3,11 +3,12 @@ package com.twitter.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TweetDTO {
+public class TweetDTO implements Serializable {
 
     @JsonProperty(TweetConstants.MESSAGE_ID)
     private String messageId;
